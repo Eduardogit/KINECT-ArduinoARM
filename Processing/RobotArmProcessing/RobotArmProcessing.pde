@@ -1,8 +1,3 @@
-// Daniel Shiffman
-// Kinect Point Cloud example
-
-// https://github.com/shiffman/OpenKinect-for-Processing
-// http://shiffman.net/p5/kinect/
 
 import org.openkinect.freenect.*;
 import org.openkinect.processing.*;
@@ -23,7 +18,7 @@ float maxThresh = 825;
 PImage img; 
 void setup() {
   // Rendering in P3D
-  size(800, 600);
+  size(600, 500);
   String portName = Serial.list()[0];
  port = new Serial(this, Serial.list()[0], 9600);
   kinect = new Kinect(this);
@@ -57,7 +52,7 @@ void draw() {
       int offset = x + y*kinect.width;
       int d = depth[offset];
       
-      if(d > minThresh && d < maxThresh && x > 100 && y > 50){
+      if(d > minThresh && d < maxThresh ){
         img.pixels[offset] = color(255,0,150);
         //sumX += x;
        // sumY += y;
@@ -78,9 +73,12 @@ void draw() {
   image(img,0,0);
   float avgX = sumX / totalPix;
   float avgY = sumY / totalPix;
-  fill(255);
-  ellipse(rx,ry,32,32);
-  println(rx +","+ry);
+  noStroke();
+ fill(0,0,0,64);
+  ellipse(rx,ry,30,30);
+  ellipse(rx,ry,60,60);
+  ellipse(rx,ry,90,90);
+  println((rx/2)*180/350 +","+(ry/2)*180/240);
   update(rx, ry);
 
 
@@ -89,8 +87,8 @@ void draw() {
 void update(int x, int y)
 {
   //Calculate servo postion from mouseX
-  xpos= x/2;
-  ypos = y/2;
+  xpos= (x/2)*180/350;
+  ypos = (y/2)*180/240;
   //Output the servo position ( from 0 to 180)
   port.write(xpos+"x");
   port.write(ypos+"y");
