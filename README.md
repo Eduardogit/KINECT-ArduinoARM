@@ -1,7 +1,8 @@
-# Robot-Arm-with-Kinect
+Arduino Arm replication of Kinect step movements 
+THANKS TO 
 
 A simple robot arm project. 
 
-Authors: Erol Kaftanoglu, Veysel Burak Keles
+by Erol Kaftanoglu, Veysel Burak Keles
 
-Thanks to Daniel Shiffman for your open kinect project.
+base code 
